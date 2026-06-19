@@ -2,7 +2,253 @@
   box-sizing: border-box;
 }
 
-.image {
-  filter: blur(12px);
-  margin: 30px auto;
+
+
+
+
+
+/* =====================================================
+   GUESS IT — App.css
+   Style principal du jeu : mystère, fun, moderne
+   ===================================================== */
+
+/* --- Layout principal --- */
+
+body {
+  background: linear-gradient(135deg, #0f0c1a 0%, #1a1030 60%, #0d1a2e 100%);
+  min-height: 100svh;
 }
+
+#root {
+  border-inline: 1px solid rgba(170, 59, 255, 0.15);
+  padding: 0 24px 48px;
+}
+
+/* --- Titre --- */
+
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(90deg, #c084fc, #aa3bff, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 40px 0 24px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+h1::after {
+  content: '🔍';
+  font-size: 1.5rem;
+  -webkit-text-fill-color: initial;
+  margin-left: 12px;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 8px rgba(192, 132, 252, 0.6));
+}
+
+/* --- Image mystère --- */
+
+.image-wrapper {
+  width: 360px;
+  max-width: 90%;
+  height: 260px;
+  margin: 0 auto 28px;
+  border-radius: 16px;
+  border: 3px solid rgba(170, 59, 255, 0.7);
+  outline: 1px solid rgba(170, 59, 255, 0.2);
+  outline-offset: 4px;
+  box-shadow:
+    0 0 0 6px rgba(170, 59, 255, 0.08),
+    0 0 30px rgba(170, 59, 255, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.5);
+  overflow: hidden; /* important pour que l'image ne déborde pas du border-radius */
+}
+
+img.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: blur(12px);
+  
+  
+}
+
+.image:hover {
+  box-shadow:
+    0 0 50px rgba(170, 59, 255, 0.35),
+    0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* --- Input et bouton (GuessInput) --- */
+
+.guess-input-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 32px;
+  max-width: 420px;
+}
+
+.guess-input-wrapper input[type="text"] {
+  flex: 1;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(170, 59, 255, 0.35);
+  border-radius: 10px;
+  color: #f3f4f6;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.guess-input-wrapper input[type="text"]::placeholder {
+  color: rgba(156, 163, 175, 0.5);
+}
+
+.guess-input-wrapper input[type="text"]:focus {
+  border-color: #aa3bff;
+  box-shadow: 0 0 0 3px rgba(170, 59, 255, 0.2);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.guess-input-wrapper button {
+  padding: 12px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  background: linear-gradient(135deg, #aa3bff, #7c3aed);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 4px 14px rgba(170, 59, 255, 0.35);
+  white-space: nowrap;
+}
+
+.guess-input-wrapper button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(170, 59, 255, 0.5);
+}
+
+.guess-input-wrapper button:active {
+  transform: translateY(0);
+  opacity: 0.85;
+}
+
+/* --- Historique des essais (GuessHistory) --- */
+
+.guess-history {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 420px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.guess-history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(170, 59, 255, 0.15);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #d1d5db;
+  transition: border-color 0.2s;
+}
+
+.guess-history-item:hover {
+  border-color: rgba(170, 59, 255, 0.3);
+}
+
+.guess-history-item .guess-word {
+  font-weight: 600;
+  color: #e5e7eb;
+  text-transform: capitalize;
+}
+
+.guess-history-item .guess-proximity {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.85rem;
+  padding: 2px 10px;
+  border-radius: 20px;
+  background: rgba(170, 59, 255, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(170, 59, 255, 0.3);
+  font-weight: 600;
+}
+
+.guess-history-item .guess-proximity::after {
+  content: '%';
+}
+
+/* Proximité élevée = vert */
+.guess-history-item.high .guess-proximity {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+/* Proximité faible = rouge */
+.guess-history-item.low .guess-proximity {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.25);
+}
+
+/* --- Timer --- */
+
+.timer {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #c084fc;
+  letter-spacing: 2px;
+  margin: 0 auto 20px;
+  padding: 8px 20px;
+  display: inline-block;
+  background: rgba(170, 59, 255, 0.08);
+  border: 1px solid rgba(170, 59, 255, 0.25);
+  border-radius: 8px;
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+    margin: 28px 0 18px;
+  }
+
+  .image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .guess-input-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .guess-input-wrapper button {
+    width: 100%;
+  }
+}
+
+/* --- Reduced motion --- */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+

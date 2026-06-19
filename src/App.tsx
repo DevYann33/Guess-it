@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import words from './data/words'
 import './App.css'
 import GuessInput from './components/GuessInput'
@@ -14,12 +14,15 @@ function App() {
   );
 
   const [history, setHistory] = useState([]);
-  
+  const [timeLeft, setTimeLeft] = useState(30);
+  const [goodAnswer, setGoodAnswer] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
+
   function handleGuess(guess: string) {
 
     const userGuess = guess;
-    const proximity =
-      currentWord.closeWords[userGuess] || 0;
+    const proximity = currentWord.closeWords[userGuess] || 0;
+     
     
     setHistory([
       ...history,
@@ -28,40 +31,86 @@ function App() {
       proximity: proximity
       }
     ]);
-    
+
     if (userGuess === currentWord.word) {
-      alert("Bravo !");
-    
-        nextWord();
-        return;
-    }
-    else if(userGuess === proximity) {
-      return; 
-    }
-    
+      setGoodAnswer(true);
+      return;
+    } 
   }
   
   function nextWord() {
-    setHistory([])
+    
+
     let newWord;
 
     do {
       newWord = words[Math.floor(Math.random() * words.length)];
     } while (newWord.word === currentWord.word);
-
+    setGoodAnswer(false);
     setCurrentWord(newWord);
+    setHistory([]);
+    setTimeLeft(30);
+    
     }
+
+    useEffect(() => {
+      if (!gameStarted) {
+      return;
+      };
+
+      if (goodAnswer) {
+        return;
+      };
+
+      const interval = setInterval(() => {
+      setTimeLeft((previousTime) => {
+        
+        if (previousTime <= 1) {
+          nextWord();
+          return 30;
+        }
+
+        return previousTime - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [goodAnswer, gameStarted]);
 
 
   return (
     <>
+      {!gameStarted && (
+        <div>
+        <button onClick={() => setGameStarted(true)}>
+          Start
+        </button>
+        </div>
+      )}
       <h1>Guess the word</h1>
-      
-      <img className='image'
+      <h2 className='timer'>Time left : {timeLeft}s</h2>
+      <div className='image-wrapper'>
+      <img style={{
+        filter: goodAnswer ? "blur(0px)" : "blur(12px)"
+        }} className='image'
         src={currentWord.image}
         alt='mystery word'
         width="400"
         />
+      </div>
+
+      
+
+      <div> 
+      {goodAnswer && 
+        (
+          <div>
+            <h2>Bravo !</h2>
+            <button onClick={nextWord}>next word</button>
+          </div>  
+        )
+      }
+      </div> 
       <GuessInput onSubmit= {handleGuess}/> 
       <GuessHistory history={history}/> 
     </>

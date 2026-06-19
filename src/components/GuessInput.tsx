@@ -3,21 +3,23 @@ import { useState } from "react";
 function GuessInput({ onSubmit }) {
     const [guess, setGuess] = useState("");
 
-    const handleSubmit= () => {
+    const handleSubmit= (event) => {
+        event.preventDefault();
         onSubmit(guess);
-        setGuess("")
-    }
+        setGuess("");
+    };
 
     return (
         <div>
-            <input
-            type="text"
-            value={guess}
-            onChange={(word) => setGuess(word.target.value)}
-            placeholder="enter your guess"
-            />
-
-            <button onClick={handleSubmit}>Ok</button>
+            <form onSubmit={handleSubmit}>
+                <input
+                type="text"
+                value={guess}
+                onChange={(word) => setGuess(word.target.value)}
+                placeholder="enter your guess"
+                />
+                <button type="submit">Ok</button>
+            </form>
         </div>
     )
 
