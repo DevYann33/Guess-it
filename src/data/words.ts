@@ -232,18 +232,6 @@ export default[
     }
   },
   {
-    "word": "observatoire",
-    "image": "/images/observatoire.jpg",
-    "closeWords": {
-      "étoiles": 80,
-      "télescope": 90,
-      "astronomie": 85,
-      "ciel": 65,
-      "planète": 70,
-      "astronome": 75
-    }
-  },
-  {
     "word": "montgolfière",
     "image": "/images/montgolfiere.jpg",
     "closeWords": {
@@ -328,18 +316,6 @@ export default[
     }
   },
   {
-    "word": "geyser",
-    "image": "/images/geyser.jpg",
-    "closeWords": {
-      "eau": 70,
-      "vapeur": 80,
-      "volcan": 75,
-      "Islande": 65,
-      "jaillir": 90,
-      "chaleur": 60
-    }
-  },
-  {
     "word": "pagode",
     "image": "/images/pagode.jpg",
     "closeWords": {
@@ -376,18 +352,6 @@ export default[
     }
   },
   {
-    "word": "balancier",
-    "image": "/images/balancier.jpg",
-    "closeWords": {
-      "pendule": 90,
-      "horloge": 85,
-      "rythme": 80,
-      "oscillation": 75,
-      "équilibre": 70,
-      "temps": 60
-    }
-  },
-  {
     "word": "kiosque",
     "image": "/images/kiosque.jpg",
     "closeWords": {
@@ -397,18 +361,6 @@ export default[
       "parc": 65,
       "vente": 75,
       "stand": 60
-    }
-  },
-  {
-    "word": "manoir",
-    "image": "/images/manoir.jpg",
-    "closeWords": {
-      "château": 80,
-      "maison": 65,
-      "noble": 75,
-      "hanté": 70,
-      "domaine": 85,
-      "campagne": 60
     }
   },
   {
@@ -436,27 +388,15 @@ export default[
     }
   },
   {
-    "word": "corsaire",
-    "image": "/images/corsaire.jpg",
+    "word": "pirate",
+    "image": "/images/pirate.jpg",
     "closeWords": {
-      "pirate": 90,
+      "corsaire": 90,
       "mer": 75,
       "bateau": 70,
       "navire": 65,
       "roi": 80,
       "butin": 60
-    }
-  },
-  {
-    "word": "cadran",
-    "image": "/images/cadran.jpg",
-    "closeWords": {
-      "horloge": 90,
-      "montre": 85,
-      "solaire": 80,
-      "aiguille": 75,
-      "temps": 70,
-      "chiffre": 65
     }
   },
   {
