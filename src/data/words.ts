@@ -85,7 +85,7 @@ export default[
   },
   {
         "word": "télescope",
-        "image": "/images/telescope.jpg",
+        "image": "/images/télescope.jpg",
         "closeWords": {
         "astronomie": 95,
         "étoile": 85,
@@ -118,7 +118,7 @@ export default[
   },
   {
         "word": "échiquier",
-        "image": "/images/echiquier.jpg",
+        "image": "/images/échiquier.jpg",
         "closeWords": {
         "échecs": 95,
         "roi": 80,
@@ -245,7 +245,7 @@ export default[
   },
   {
     "word": "caméléon",
-    "image": "/images/cameleon.jpg",
+    "image": "/images/caméleon.jpg",
     "closeWords": {
       "reptile": 80,
       "camouflage": 90,
@@ -305,7 +305,7 @@ export default[
   },
   {
     "word": "méduse",
-    "image": "/images/meduse.jpg",
+    "image": "/images/méduse.jpg",
     "closeWords": {
       "mer": 75,
       "océan": 70,
